@@ -1,0 +1,22 @@
+{
+  "name": "trend-detector",
+  "version": "0.0.1",
+  "description": "Build the Function:",
+  "main": "func.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbiville/trend-detector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fbiville/trend-detector/issues"
+  },
+  "homepage": "https://github.com/fbiville/trend-detector#readme",
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}
