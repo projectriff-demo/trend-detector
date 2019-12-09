@@ -1,7 +1,7 @@
 {
   "name": "trend-detector",
   "version": "0.0.1",
-  "description": "Build the Function:",
+  "description": "Function that watches Orders and records ranked quantities for Products in Redis",
   "main": "func.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
