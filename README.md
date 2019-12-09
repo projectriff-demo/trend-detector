@@ -2,16 +2,13 @@
 
 ## Prereqs
 
-Install Redis:
-
-```shell script
-helm install --name my-redis --set usePassword=false  stable/redis
-```
+Install Redis as instructed [here](https://github.com/projectriff-demo/demo/blob/47d473244716cdcf6aaa909651ae9b0355d6fe7d/trend-detector.md#install-redis).
+Note that the password is hardcoded in the function for now!
 
 ## Local test
 
 ```shell script
-kubectl port-forward svc/my-redis-master 6379:6379
+kubectl port-forward svc/count-redis-master 6379:6379
 ```
 And
 ```shell script
