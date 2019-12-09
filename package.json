@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/projectriffdemo/trend-detector.git"
+    "url": "https://github.com/projectriff-demo/trend-detector.git"
   },
   "author": "riff team",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/fbiville/trend-detector/issues"
+    "url": "https://github.com/projectriff-demo/trend-detector/issues"
   },
-  "homepage": "https://github.com/fbiville/trend-detector#readme",
+  "homepage": "https://github.com/projectriff-demo/trend-detector#readme",
   "dependencies": {
     "redis": "^2.8.0"
   }
