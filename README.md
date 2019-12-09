@@ -49,5 +49,5 @@ riff streaming processor create trends \
 
 For now, you can see what the function computes in the logs:
 ```shell script
-kubectl logs -l=streaming.projectriff.io/processor=trends -c function -f
+riff streaming processor tail trends
 ```
