@@ -2,7 +2,6 @@ const {createClient} = require('redis');
 const {promisify} = require('util');
 
 // promise wrapped redis client methods
-const password = 'tanzu2020';
 const redisUrl = process.env.REDIS_URL || '//count-redis-master:6379';
 let client;
 
@@ -19,7 +18,7 @@ module.exports = order => {
 };
 
 module.exports.$init = () => {
-    client = createClient(redisUrl, {password: password});
+    client = createClient(redisUrl);
 };
 
 module.exports.$destroy = () => {

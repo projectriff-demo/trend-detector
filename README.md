@@ -2,8 +2,7 @@
 
 ## Prereqs
 
-Install Redis as instructed [here](https://github.com/projectriff-demo/demo/blob/47d473244716cdcf6aaa909651ae9b0355d6fe7d/trend-detector.md#install-redis).
-Note that the password is hardcoded in the function for now!
+Install Redis as instructed [here](https://github.com/projectriff-demo/demo/blob/master/trend-detector.md#install-redis).
 
 ## Local test
 
