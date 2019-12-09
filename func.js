@@ -1,4 +1,26 @@
+const {createClient} = require('redis');
+const {promisify} = require('util');
+
+// promise wrapped redis client methods
+const redisUrl = process.env.REDIS_URL || '//count-redis-master:6379';
+let client;
+
+// the function, called per invocation
 module.exports = order => {
-  console.log('received order: %j', order);
-  return 'most popular product: TBD';
+    for (const productId of Object.keys(order.products)) {
+        client.zadd("top-orders", "incr", order.products[productId], productId);
+    }
+    client.zrevrange("top-orders", 0, -1, "WITHSCORES", (err, members) => {
+        for (let i = 0; i <= members.length - 1; i += 2) {
+            console.log(`Item ${members[i]}, sold ${members[i + 1]} time(s)`)
+        }
+    });
+};
+
+module.exports.$init = () => {
+    client = createClient(redisUrl);
+};
+
+module.exports.$destroy = () => {
+    client.quit();
 };
