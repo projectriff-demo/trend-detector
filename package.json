@@ -8,10 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fbiville/trend-detector.git"
+    "url": "https://github.com/projectriffdemo/trend-detector.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "riff team",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/fbiville/trend-detector/issues"
   },
