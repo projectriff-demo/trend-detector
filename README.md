@@ -20,7 +20,7 @@ Build the Function:
 
 ```
 riff function create trends \
-  --git-repo https://github.com/markfisher/trend-detector.git \
+  --git-repo https://github.com/projectriff-demo/trend-detector.git \
   --artifact func.js \
   --tail
 ```
@@ -51,3 +51,11 @@ For now, you can see what the function computes in the logs:
 ```shell script
 riff streaming processor tail trends
 ```
+
+You can also query the sorted set in Redis (assuming the port-forward above is still active):
+```shell script
+redis-cli -h 127.0.0.1
+
+127.0.0.1:6379> zrevrangebyscore top-orders +inf -inf withscores
+```
+
