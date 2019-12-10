@@ -33,8 +33,7 @@ module.exports.$destroy = () => {
     return quitAsync();
 };
 
-function zaddAll(products) {
-    return Promise.all(Object.keys(products)
-        .map(key => [key, products[key]])
-        .map(tuple => zaddAsync("top-orders", "incr", tuple[1], tuple[0])));
+function zaddAll(productQuantities) {
+    return Promise.all(Object.keys(productQuantities)
+        .map(sku => zaddAsync("top-orders", "incr", productQuantities[sku], sku)));
 }
