@@ -1,26 +1,39 @@
 const {createClient} = require('redis');
 const {promisify} = require('util');
 
-// promise wrapped redis client methods
 const redisUrl = process.env.REDIS_URL || '//count-redis-master:6379';
-let client;
+let zaddAsync,
+    zrevrangeAsync,
+    quitAsync;
 
-// the function, called per invocation
 module.exports = order => {
-    for (const productId of Object.keys(order.products)) {
-        client.zadd("top-orders", "incr", order.products[productId], productId);
-    }
-    client.zrevrange("top-orders", 0, -1, "WITHSCORES", (err, members) => {
-        for (let i = 0; i <= members.length - 1; i += 2) {
-            console.log(`Item ${members[i]}, sold ${members[i + 1]} time(s)`)
-        }
-    });
+    return zaddAll(order.products)
+        .then(() => zrevrangeAsync("top-orders", 0, -1, "WITHSCORES"))
+        .then(topOrders => {
+            for (let i = 0; i <= topOrders.length - 1; i += 2) {
+                console.log(`Item ${topOrders[i]}, sold ${topOrders[i + 1]} time(s)`);
+            }
+        });
 };
 
 module.exports.$init = () => {
-    client = createClient(redisUrl);
+    return new Promise((resolve, reject) => {
+        const client = createClient(redisUrl);
+
+        zaddAsync = promisify(client.zadd).bind(client);
+        zrevrangeAsync = promisify(client.zrevrange).bind(client);
+        quitAsync = promisify(client.quit).bind(client);
+
+        client.once('ready', resolve);
+        client.once('error', reject);
+    });
 };
 
 module.exports.$destroy = () => {
-    client.quit();
+    return quitAsync();
 };
+
+function zaddAll(productQuantities) {
+    return Promise.all(Object.keys(productQuantities)
+        .map(sku => zaddAsync("top-orders", "incr", productQuantities[sku], sku)));
+}
