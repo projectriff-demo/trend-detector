@@ -8,7 +8,7 @@ let zaddAsync,
 
 module.exports = order => {
     return zaddAll(order.products)
-        .then(_ => zrevrangeAsync("top-orders", 0, -1, "WITHSCORES"))
+        .then(() => zrevrangeAsync("top-orders", 0, -1, "WITHSCORES"))
         .then(topOrders => {
             for (let i = 0; i <= topOrders.length - 1; i += 2) {
                 console.log(`Item ${topOrders[i]}, sold ${topOrders[i + 1]} time(s)`);
