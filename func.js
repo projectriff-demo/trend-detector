@@ -13,6 +13,9 @@ module.exports = order => {
             for (let i = 0; i <= topOrders.length - 1; i += 2) {
                 console.log(`Item ${topOrders[i]}, sold ${topOrders[i + 1]} time(s)`);
             }
+            const result = {};
+            result[topOrders[0]] = topOrders[1];
+            return Promise.resolve(result);
         });
 };
 
