@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/projectriff-demo/trend-detector#readme",
   "dependencies": {
-    "redis": "^2.8.0"
+    "redis": "^3.0.2"
   }
 }
